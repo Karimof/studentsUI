@@ -1,7 +1,5 @@
 <style>
   table, tr, td, th {
-    border: 1px solid black;
-    border-collapse: collapse;
     padding: 5px;
   }
 
@@ -12,9 +10,9 @@
 <div class="container">
   <div style="padding: 20px; text-align: right; right: 20% !important;">
     <a type="button" href="/add" class="btn btn-success" style="margin: 10px">Add</a>
-    <a type="button" class="btn btn-primary" style="margin: 10px">Export to excel</a>
+    <a type="button" (click)="export()" class="btn btn-primary" style="margin: 10px">Export to excel</a>
   </div>
-  <table>
+  <table class="table table-striped">
     <thead>
     <tr>
       <th>ID</th>
@@ -50,10 +48,10 @@
       <td>{{student.createdAt}}</td>
       <td>
         <!--   This for get student   -->
-        <a [routerLink]="['/students', student.id]" class="btn btn-secondary" type="button">Edit</a>
+        <a [routerLink]="['/students', student.id]" class="btn btn-secondary" type="button"><span class="bi bi-pen"></span></a>
       </td>
       <td>
-        <button type=button class="btn btn-danger" (click)="delete(student?.id)">Delete</button>
+        <button type=button class="btn btn-danger" (click)="delete(student?.id)"><span class="bi bi-trash"></span></button>
       </td>
     </tr>
     </tbody>

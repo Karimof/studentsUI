@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IStudents} from "../../../model/students-model";
 import {StudentServiceService} from "../../../services/students/student-service.service";
-import {Router} from "@angular/router";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-students',
@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 export class StudentsComponent {
 
   studentList!: IStudents[];
+  fileName: string = "StudentList.xlsx"
+
   page: number = 1;
   count: number = 0;
   tableSize: number = 10;
@@ -41,5 +43,13 @@ export class StudentsComponent {
         this.ngOnInit()
       })
     }
+  }
+
+  export() {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.studentList);
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, this.fileName);
   }
 }
