@@ -9,6 +9,14 @@
 </style>
 <div class="container">
   <div style="padding: 20px; text-align: right; right: 20% !important;">
+    <a type="button" (click)="clearFilter()" *ngIf="studyId != 0">cancel filter &nbsp;</a>
+    <div style="position: fixed;left: 65%;top: 16%;" *ngIf="studyId == 0">Filter by Study</div>
+    <select id="studiesId" name="studiesId" [(ngModel)]="studyId" (ngModelChange)="filter()">
+      <option *ngFor="let study of studies" [value]="study.id">
+        {{study?.name}}
+      </option>
+    </select>
+
     <a type="button" href="/add" class="btn btn-success" style="margin: 10px">Add</a>
     <a type="button" (click)="export()" class="btn btn-primary" style="margin: 10px">Export to excel</a>
   </div>
@@ -30,7 +38,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let student of studentList | paginate: {
+    <tr *ngFor="let student of filterStudentList | paginate: {
     itemsPerPage: tableSize,
     currentPage: page,
     totalItems: count
@@ -48,10 +56,12 @@
       <td>{{student.createdAt}}</td>
       <td>
         <!--   This for get student   -->
-        <a [routerLink]="['/students', student.id]" class="btn btn-secondary" type="button"><span class="bi bi-pen"></span></a>
+        <a [routerLink]="['/students', student.id]" class="btn btn-secondary" type="button"><span
+          class="bi bi-pen"></span></a>
       </td>
       <td>
-        <button type=button class="btn btn-danger" (click)="delete(student?.id)"><span class="bi bi-trash"></span></button>
+        <button type=button class="btn btn-danger" (click)="delete(student?.id)"><span class="bi bi-trash"></span>
+        </button>
       </td>
     </tr>
     </tbody>
