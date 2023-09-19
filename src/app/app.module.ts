@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { StudentsComponent } from './components/students/list/students.component';
 import {HttpClientModule} from "@angular/common/http";
 import { EditComponent } from './components/students/edit/edit/edit.component';
+import {FormsModule} from "@angular/forms";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { EditComponent } from './components/students/edit/edit/edit.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en-US'},

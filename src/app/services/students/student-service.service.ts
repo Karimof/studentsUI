@@ -3,6 +3,8 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IStudents} from "../../model/students-model";
 
+const endPoint = 'http://localhost:9093/students'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,10 +14,18 @@ export class StudentServiceService {
   }
 
   getStudents(): Observable<HttpResponse<IStudents[]>> {
-    return this.http.get<IStudents[]>('http://localhost:9093/students', {observe: 'response'})
+    return this.http.get<IStudents[]>(endPoint, {observe: 'response'})
   }
 
   getStudent(id: number): Observable<HttpResponse<IStudents>> {
-    return this.http.get<IStudents>('http://localhost:9093/students/' + id, {observe: 'response'})
+    return this.http.get<IStudents>(endPoint + "/" + id, {observe: 'response'})
+  }
+
+  editStudent(students: IStudents): Observable<HttpResponse<IStudents>> {
+    return this.http.put(endPoint, students, {observe: 'response'})
+  }
+
+  deleteStudent(id: number): void {
+    this.http.delete(endPoint + "/" + id, {observe: 'response'}).subscribe()
   }
 }

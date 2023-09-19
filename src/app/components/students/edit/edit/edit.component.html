@@ -11,13 +11,16 @@
     padding: 5px
   }
 </style>
+
+
+<form #editFrom="ngForm" (ngSubmit)="onSubmit(editFrom.value)">
   <table>
     <tr>
       <td>
         <label for="fname">First Name</label>
       </td>
       <td>
-        <input type="text" id="fname" name="firstname" placeholder="Your name.." value="{{student?.firstName}}">
+        <input type="text" id="fname" name="firstname" placeholder="Your name.." [ngModel]="student?.firstName">
       </td>
     </tr>
     <tr>
@@ -25,7 +28,7 @@
         <label for="lname">Last Name</label>
       </td>
       <td>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name.." value="{{student?.lastName}}">
+        <input type="text" id="lname" name="lastname" placeholder="Your last name.." [ngModel]="student?.lastName">
       </td>
     </tr>
     <tr>
@@ -34,16 +37,15 @@
       </td>
       <td>
         <input type="text" id="mname" name="middlename" placeholder="Your middle name.."
-               value="{{student?.middleName}}">
+               [ngModel]="student?.middleName">
       </td>
     </tr>
-
     <tr>
       <td>
         <label for="desc">Description</label>
       </td>
       <td>
-        <input type="text" id="desc" name="desc" placeholder="Your desc.." value="{{student?.description}}">
+        <input type="text" id="desc" name="description" placeholder="Your desc.." [ngModel]="student?.description">
       </td>
     </tr>
 
@@ -52,7 +54,7 @@
         <label for="ssday">Study start date</label>
       </td>
       <td>
-        <input type="date" id="ssday" name="ssday" placeholder="Study start date.." value="{{student?.studyStartDate}}">
+        <input type="date" id="ssday" name="ssday" placeholder="Study start date.." [ngModel]="student?.studyStartDate">
       </td>
     </tr>
     <tr>
@@ -60,17 +62,19 @@
         <label for="seday">Study end date</label>
       </td>
       <td>
-        <input type="date" id="seday" name="seday" placeholder="Study end date.." value="{{student?.studyEndDate}}">
+        <input type="date" id="seday" name="seday" placeholder="Study end date.." [ngModel]="student?.studyEndDate">
       </td>
     </tr>
 
     <tr>
       <td>
-        <label for="study">Study</label>
+        <label for="studiesId">Study</label>
       </td>
       <td>
-        <select *ngFor="let study of studies" id="study" name="study">
-          <option value="{{study?.name}}" selected="{{student?.study?.name}}">{{study?.name}}</option>
+        <select  id="studiesId" name="studiesId" [(ngModel)]="defaultSelect">
+          <option *ngFor="let study of studies" [value]="study.id">
+            {{study?.name}}
+          </option>
         </select>
       </td>
     </tr>
@@ -79,19 +83,24 @@
         Gender
       </td>
 
-      <input type="radio" id="male" name="gender" value="Male" [checked]="student?.gender == 'Male'">
+      <input type="radio" id="male" name="gender" value="Male" [checked]="student?.gender == 'Male'"
+             [ngModel]="student?.gender">
       <label for="male">Male</label>
 
-      <input type="radio" id="female" name="gender" value="Female" [checked]="student?.gender == 'Female'">
+      <input type="radio" id="female" name="gender" value="Female" [checked]="student?.gender == 'Female'"
+             [ngModel]="student?.gender">
       <label for="female">Female</label><br>
     </tr>
     <tr>
       <td>
-        <label for="bdate">Birth date</label>
+        <label for="birthDate">Birth date</label>
       </td>
       <td>
-        <input type="date" id="bdate" name="bdate" placeholder="Birth date.." value="{{student?.birthDate}}">
+        <input type="date" id="birthDate" name="birthDate" placeholder="Birth date.." value="{{student?.birthDate}}"
+               [ngModel]="student?.birthDate">
       </td>
     </tr>
   </table>
   <button type="submit">Save</button>
+
+</form>

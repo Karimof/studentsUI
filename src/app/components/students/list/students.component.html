@@ -9,49 +9,56 @@
     min-width: 80%;
   }
 </style>
-<div>
-
+<div class="container">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>FirtName</th>
+      <th>LastName</th>
+      <th>MiddleName</th>
+      <th>Description</th>
+      <th>StudyStartDate</th>
+      <th>StudyEndDate</th>
+      <th>Study</th>
+      <th>Gender</th>
+      <th>BirthDate</th>
+      <th>CreatedAt</th>
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of studentList | paginate: {
+    itemsPerPage: tableSize,
+    currentPage: page,
+    totalItems: count
+    }">
+      <td>{{student.id}}</td>
+      <td>{{student.firstName}}</td>
+      <td>{{student.lastName}}</td>
+      <td>{{student.middleName}}</td>
+      <td>{{student.description}}</td>
+      <td>{{student.studyStartDate}}</td>
+      <td>{{student.studyEndDate}}</td>
+      <td>{{student.studies?.name}}</td>
+      <td>{{student.gender}}</td>
+      <td>{{student.birthDate}}</td>
+      <td>{{student.createdAt}}</td>
+      <td>
+        <!--   This for get student   -->
+        <a [routerLink]="['/students', student.id]" class="btn btn-secondary" type="button">Edit</a>
+      </td>
+      <td>
+        <button type=button class="btn btn-danger" (click)="delete(student?.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
-
-<table>
-  <thead>
-  <tr *ngFor="let student of studentList">
-    <th>ID</th>
-    <th>FirtName</th>
-    <th>LastName</th>
-    <th>MiddleName</th>
-    <th>Description</th>
-    <th>StudyStartDate</th>
-    <th>StudyEndDate</th>
-    <th>Study</th>
-    <th>Gender</th>
-    <th>BirthDate</th>
-    <th>CreatedAt</th>
-    <th colspan="2">Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let student of studentList">
-    <td>{{student.id}}</td>
-    <td>{{student.firstName}}</td>
-    <td>{{student.lastName}}</td>
-    <td>{{student.middleName}}</td>
-    <td>{{student.description}}</td>
-    <td>{{student.studyStartDate}}</td>
-    <td>{{student.studyEndDate}}</td>
-    <td>{{student.study}}</td>
-    <td>{{student.gender}}</td>
-    <td>{{student.birthDate}}</td>
-    <td>{{student.createdAt}}</td>
-    <td>
-      <!--   This for get student   -->
-      <a [routerLink]="['/students', student.id]" type="button">Edit</a>
-    </td>
-    <td>
-      <a href="#" type="button">Delete</a>
-    </td>
-  </tr>
-  </tbody>
-
-</table>
-
+<div align="center" style="padding: 10px; position: fixed; top: 80%; left:40%">
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="onTableDataChange($event)">
+  </pagination-controls>
+</div>
