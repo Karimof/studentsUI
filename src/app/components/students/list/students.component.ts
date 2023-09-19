@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IStudents} from "../../../model/students-model";
 import {StudentServiceService} from "../../../services/students/student-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-students',
@@ -14,10 +15,7 @@ export class StudentsComponent {
   count: number = 0;
   tableSize: number = 10;
 
-  constructor
-  (
-    protected studentService: StudentServiceService,
-  ) {
+  constructor(private studentService: StudentServiceService) {
   }
 
   ngOnInit(): void {
@@ -28,7 +26,6 @@ export class StudentsComponent {
     this.studentService.getStudents().subscribe(res => {
       if (res.body) {
         this.studentList = res.body!;
-        // value.studyStartDate = formatDate(value.studyStartDate!, "yyy-mm-dd", "en-US")
       }
     })
   }
@@ -40,7 +37,9 @@ export class StudentsComponent {
 
   delete(id?: number) {
     if (confirm("Are you sure to delete student id " + id)) {
-      this.studentService.deleteStudent(id!)
+      this.studentService.deleteStudent(id!).subscribe(value => {
+        this.ngOnInit()
+      })
     }
   }
 }

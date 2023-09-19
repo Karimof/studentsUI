@@ -12,95 +12,96 @@
   }
 </style>
 
+<div class="container" align="center" style="padding: 20px">
+  <form #editFrom="ngForm" (ngSubmit)="onSubmit(editFrom.value)" ngNativeValidate>
+    <table>
+      <tr>
+        <td>
+          <label for="fname">First Name</label>
+        </td>
+        <td>
+          <input type="text" id="fname" name="firstname" placeholder="Your name.." required [ngModel]="student?.firstName">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="lname">Last Name</label>
+        </td>
+        <td>
+          <input type="text" id="lname" name="lastname" placeholder="Your last name.." required [ngModel]="student?.lastName">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="mname">Middle Name</label>
+        </td>
+        <td>
+          <input type="text" id="mname" name="middlename" placeholder="Your middle name.."
+                 [ngModel]="student?.middleName">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="desc">Description</label>
+        </td>
+        <td>
+          <input type="text" id="desc" name="description" placeholder="Your desc.." [ngModel]="student?.description">
+        </td>
+      </tr>
 
-<form #editFrom="ngForm" (ngSubmit)="onSubmit(editFrom.value)">
-  <table>
-    <tr>
-      <td>
-        <label for="fname">First Name</label>
-      </td>
-      <td>
-        <input type="text" id="fname" name="firstname" placeholder="Your name.." [ngModel]="student?.firstName">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label for="lname">Last Name</label>
-      </td>
-      <td>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name.." [ngModel]="student?.lastName">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label for="mname">Middle Name</label>
-      </td>
-      <td>
-        <input type="text" id="mname" name="middlename" placeholder="Your middle name.."
-               [ngModel]="student?.middleName">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label for="desc">Description</label>
-      </td>
-      <td>
-        <input type="text" id="desc" name="description" placeholder="Your desc.." [ngModel]="student?.description">
-      </td>
-    </tr>
+      <tr>
+        <td>
+          <label for="ssday">Study start date</label>
+        </td>
+        <td>
+          <input type="date" id="ssday" name="ssday" placeholder="Study start date.." required
+                 [ngModel]="student?.studyStartDate">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="seday">Study end date</label>
+        </td>
+        <td>
+          <input type="date" id="seday" name="seday" placeholder="Study end date.." required [ngModel]="student?.studyEndDate">
+        </td>
+      </tr>
 
-    <tr>
-      <td>
-        <label for="ssday">Study start date</label>
-      </td>
-      <td>
-        <input type="date" id="ssday" name="ssday" placeholder="Study start date.." [ngModel]="student?.studyStartDate">
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label for="seday">Study end date</label>
-      </td>
-      <td>
-        <input type="date" id="seday" name="seday" placeholder="Study end date.." [ngModel]="student?.studyEndDate">
-      </td>
-    </tr>
+      <tr>
+        <td>
+          <label for="studiesId">Study</label>
+        </td>
+        <td>
+          <select id="studiesId" name="studiesId" [(ngModel)]="defaultSelect">
+            <option *ngFor="let study of studies" [value]="study.id">
+              {{study?.name}}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Gender
+        </td>
 
-    <tr>
-      <td>
-        <label for="studiesId">Study</label>
-      </td>
-      <td>
-        <select  id="studiesId" name="studiesId" [(ngModel)]="defaultSelect">
-          <option *ngFor="let study of studies" [value]="study.id">
-            {{study?.name}}
-          </option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Gender
-      </td>
+        <input type="radio" id="male" name="gender" value="Male" [checked]="student?.gender == 'Male'" required
+               [ngModel]="student?.gender">
+        <label for="male">Male</label>
 
-      <input type="radio" id="male" name="gender" value="Male" [checked]="student?.gender == 'Male'"
-             [ngModel]="student?.gender">
-      <label for="male">Male</label>
-
-      <input type="radio" id="female" name="gender" value="Female" [checked]="student?.gender == 'Female'"
-             [ngModel]="student?.gender">
-      <label for="female">Female</label><br>
-    </tr>
-    <tr>
-      <td>
-        <label for="birthDate">Birth date</label>
-      </td>
-      <td>
-        <input type="date" id="birthDate" name="birthDate" placeholder="Birth date.." value="{{student?.birthDate}}"
-               [ngModel]="student?.birthDate">
-      </td>
-    </tr>
-  </table>
-  <button type="submit">Save</button>
-
-</form>
+        <input type="radio" id="female" name="gender" value="Female" [checked]="student?.gender == 'Female'" required
+               [ngModel]="student?.gender">
+        <label for="female">Female</label><br>
+      </tr>
+      <tr>
+        <td>
+          <label for="birthDate">Birth date</label>
+        </td>
+        <td>
+          <input type="date" id="birthDate" name="birthDate" placeholder="Birth date.." value="{{student?.birthDate}}" required
+                 [ngModel]="student?.birthDate">
+        </td>
+      </tr>
+    </table>
+    <button type="submit" style="margin:10px;" class="btn btn-primary">Save</button>
+  </form>
+</div>

@@ -25,7 +25,11 @@ export class StudentServiceService {
     return this.http.put(endPoint, students, {observe: 'response'})
   }
 
-  deleteStudent(id: number): void {
-    this.http.delete(endPoint + "/" + id, {observe: 'response'}).subscribe()
+  deleteStudent(id: number): Observable<HttpResponse<any>> {
+    return this.http.delete(endPoint + "/" + id, {observe: 'response'})
+  }
+
+  saveStudent(students: IStudents): Observable<HttpResponse<IStudents>> {
+    return this.http.post(endPoint, students, {observe: 'response'})
   }
 }
