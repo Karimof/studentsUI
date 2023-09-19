@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {StudentServiceService} from "../../../../services/students/student-service.service";
+import {StudentServiceService} from "../../../services/students/student-service.service";
 import {ActivatedRoute} from "@angular/router";
-import {IStudents} from "../../../../model/students-model";
-import {IStudies} from "../../../../model/studies-model";
-import {StudiesService} from "../../../../services/studies/studies.service";
+import {IStudents} from "../../../model/students-model";
+import {IStudies} from "../../../model/studies-model";
+import {StudiesService} from "../../../services/studies/studies.service";
 import {HttpClient} from "@angular/common/http";
 
 @Component({

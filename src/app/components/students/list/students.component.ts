@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
-import {IStudents, Students} from "../../../model/students-model";
+import {IStudents} from "../../../model/students-model";
 import {StudentServiceService} from "../../../services/students/student-service.service";
-import {formatDate} from "@angular/common";
-import {EditComponent} from "../edit/edit/edit.component";
 
 @Component({
   selector: 'app-students',
