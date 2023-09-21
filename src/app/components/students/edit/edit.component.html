@@ -13,8 +13,14 @@
 </style>
 
 <div class="container" align="center" style="padding: 20px">
-  <form #editFrom="ngForm" (ngSubmit)="onSubmit(editFrom.value)" ngNativeValidate>
+  <form #editFrom="ngForm" (ngSubmit)="onSubmit(editFrom.value)" ngNativeValidate enctype="multipart/form-data">
     <table>
+      <tr>
+        <td>
+          <img [src]="url" height="200px"><br>
+          <input type="file" (change)="onSelectFile($event)" accept="image/png, image/jpeg">
+        </td>
+      </tr>
       <tr>
         <td>
           <label for="fname">First Name</label>

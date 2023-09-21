@@ -2,6 +2,7 @@ import {IStudies} from "./studies-model";
 
 export interface IStudents {
   id?: number;
+  avatar?: string,
   firstName?: string;
   lastName?: string;
   middleName?: string;
@@ -16,6 +17,7 @@ export interface IStudents {
 
 export class Students implements IStudents {
   public id?: number
+  public avatar?: string
   public firstName?: string
   public lastName?: string
   public middleName?: string

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {IStudents} from "../../../model/students-model";
 import {IStudies} from "../../../model/studies-model";
 import {StudiesService} from "../../../services/studies/studies.service";
+import {v4 as uuidv4} from 'uuid';
 
 @Component({
   selector: 'app-edit',
@@ -16,6 +17,9 @@ export class EditComponent {
   studies?: IStudies[];
   gender?: string;
   defaultSelect?: number;
+  file: any;
+  formData: FormData = new FormData()
+  url = "";
 
   constructor(
     protected studentService: StudentServiceService,
@@ -52,6 +56,7 @@ export class EditComponent {
     gender: string,
     birthDate: string,
   }) {
+    this.student!.avatar = this.file?.name
     this.student!.firstName = data.firstname
     this.student!.lastName = data.lastname
     this.student!.middleName = data.middlename
@@ -61,12 +66,30 @@ export class EditComponent {
     this.student!.studies!.id = data.studiesId
     this.student!.gender = data.gender
     this.student!.birthDate = data.birthDate
+    this.studentService.saveAvatar(this.formData!).subscribe(value => {
+    })
 
     this.studentService.editStudent(this.student!).subscribe(res => {
       if (res.body !== null){
         this.router.navigate(['/students']).then()
       }
     })
+  }
+
+  onSelectFile(e: any) {
+    if (e.target.files) {
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0])
+
+      this.file = new File([e.target.files[0]], uuidv4() + '.jpg', {type: "image/jpeg"})
+
+      this.formData.append('file', this.file);
+
+      // this shows picture after choice
+      reader.onload = (event: any) => {
+        this.url = event.target.result
+      }
+    }
   }
 }
 

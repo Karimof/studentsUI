@@ -25,6 +25,10 @@ export class StudentServiceService {
     return this.http.put(endPoint, students, {observe: 'response'})
   }
 
+  saveAvatar(file: any) {
+   return this.http.post('http://localhost:9093/avatar', file, {observe: 'response'})
+  }
+
   deleteStudent(id: number): Observable<HttpResponse<any>> {
     return this.http.delete(endPoint + "/" + id, {observe: 'response'})
   }

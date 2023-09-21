@@ -10,7 +10,7 @@
 <div class="container">
   <div style="padding: 20px; text-align: right; right: 20% !important;">
     <a type="button" (click)="clearFilter()" *ngIf="studyId != 0">cancel filter &nbsp;</a>
-    <div style="position: fixed;left: 65%;top: 16%;" *ngIf="studyId == 0">Filter by Study</div>
+    <div style="position: fixed;left: 65%;top: 10.5%;" *ngIf="studyId == 0">Filter by Study</div>
     <select id="studiesId" name="studiesId" [(ngModel)]="studyId" (ngModelChange)="filter()">
       <option *ngFor="let study of studies" [value]="study.id">
         {{study?.name}}

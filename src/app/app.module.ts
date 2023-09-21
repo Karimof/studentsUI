@@ -23,7 +23,7 @@ import {AddComponent} from './components/students/add/add.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'en-US'},
