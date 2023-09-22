@@ -1,0 +1,58 @@
+<style>
+  td {
+    padding-left: 20px;
+  }
+
+  table {
+    margin-left: 100px;
+  }
+</style>
+
+<div class="container">
+  <div id="content" #content>
+    <table>
+      <tr><div>
+        <img [src]="image" width="200px" style="border-radius:50%; margin-left: 70px">
+      </div></tr>
+      <tr>
+        <td><h6>Ism:</h6></td>
+        <td><h4>{{student?.firstName}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>Familya:</h6></td>
+        <td><h4>{{student?.lastName}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>Otasining ismi:</h6></td>
+        <td><h4>{{student?.middleName}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>Tarif:</h6></td>
+        <td><h4>{{student?.description}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>O'qish boshlash sanasi:</h6></td>
+        <td><h4>{{student?.studyStartDate}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>O'qish tugash sanasi:</h6></td>
+        <td><h4>{{student?.studyEndDate}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>Fakultet:</h6></td>
+        <td><h4>{{student?.studies?.name}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>Jinsi</h6></td>
+        <td><h4>{{student?.gender}}</h4></td>
+      </tr>
+      <tr>
+        <td><h6>Tug'ilgan sanasi:</h6></td>
+        <td><h4>{{student?.birthDate}}</h4></td>
+      </tr>
+    </table>
+  </div>
+  <button (click)="generatePdf()" class="btn btn-primary" style="margin-left:150px; margin-top: 50px">Export to pdf</button>
+
+</div>
+

@@ -9,13 +9,15 @@ import {EditComponent} from './components/students/edit/edit.component';
 import {FormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
 import {AddComponent} from './components/students/add/add.component';
+import { ViewComponent } from './components/students/view/view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentsComponent,
     EditComponent,
-    AddComponent
+    AddComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

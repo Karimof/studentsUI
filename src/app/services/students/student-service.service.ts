@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IStudents} from "../../model/students-model";
+import {Resource} from "@angular/compiler-cli/src/ngtsc/metadata";
 
 const endPoint = 'http://localhost:9093/students'
 
@@ -27,6 +28,10 @@ export class StudentServiceService {
 
   saveAvatar(file: any) {
    return this.http.post('http://localhost:9093/avatar', file, {observe: 'response'})
+  }
+
+  getAvatar(studentId: number): Observable<any> {
+    return this.http.get('http://localhost:9093/avatar/' + studentId, {observe: 'response', responseType:"blob"})
   }
 
   deleteStudent(id: number): Observable<HttpResponse<any>> {
